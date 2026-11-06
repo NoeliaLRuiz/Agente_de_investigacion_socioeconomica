@@ -1,0 +1,21 @@
+CRUCE INVERSIÓN-POBREZA · skill cruzando-inversion-pobreza · 2026-11-06 00:39
+
+[APROBADO] (esencial) Las 53 series de inversión tienen los 5 años: 53 series en el CSV; incompletas o ausentes: ninguna
+[APROBADO] (esencial) La suma de los departamentos es igual al total del BCRP (cada nivel y año): diferencia máxima 0.000 millones de soles en 10 comparaciones
+[APROBADO] (esencial) El IPC PN38705PM tiene 12 meses por año: 2020: 12, 2021: 12, 2022: 12, 2023: 12, 2024: 12
+[APROBADO] (esencial) ENAHO: 25 departamentos con pobreza y población: 25 departamentos en salidas/indicadores.csv
+[APROBADO] (esencial) ENAHO: pobreza nacional a menos de 0.1 puntos de 27.6 %: 27.58 %
+[APROBADO] ENAHO: la población de los departamentos suma la nacional: 34,482,700 frente a 34,482,700
+[APROBADO] (esencial) Unión BCRP-ENAHO por código de departamento: 25 de 25: 25 departamentos unidos
+
+RESULTADOS (inversión en soles de 2024; población ENAHO 2024)
+Deflactor (promedio anual del IPC PN38705PM): 2020: 93.165, 2021: 96.872, 2022: 104.503, 2023: 111.049, 2024: 113.660
+Inversión real GR+GL, Perú: 21,784 millones en 2020 y 32,836 en 2024 (+50.7 %); total 2020-2024: 144,100 millones (nominal 132,861)
+Inversión real por habitante al año, Perú: 836 soles
+Correlación pobreza 2024 vs inversión por habitante (25 departamentos): Pearson -0.357, Spearman -0.334 (p por permutaciones = 0.099)
+Sin Lima ni Callao (23): Pearson -0.349, Spearman -0.277 (p = 0.200)
+Mediana de inversión por habitante según tercil de pobreza: más pobres (8 dptos., pobreza media 38.2 %): 1,039 soles; intermedios (8 dptos., pobreza media 27.1 %): 1,166 soles; menos pobres (9 dptos., pobreza media 15.5 %): 1,354 soles
+Más inversión por habitante: Moquegua 3,291, Cusco 2,454, Tacna 2,055, Apurímac 2,001, Ayacucho 1,723
+Menos inversión por habitante: Lima 187, Callao 276, Lambayeque 616, La Libertad 694, Puno 762
+Los 5 más pobres: Cajamarca (45.0 %) 1,047, Loreto (43.0 %) 1,032, Puno (39.9 %) 762, Pasco (39.0 %) 1,348, Huánuco (39.0 %) 835
+Lectura: correlación descriptiva entre 25 departamentos; no mide causalidad.

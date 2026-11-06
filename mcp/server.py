@@ -6,8 +6,8 @@
 Herramientas: buscar_series, serie, resumen, comparar_periodos (propia) y graficar_serie.
 Las cuentas las hace Python, no el modelo: así cada cifra sale de una llamada que se puede repetir.
 """
-import re
 import json
+import re
 import time
 import unicodedata
 from datetime import date
@@ -29,7 +29,8 @@ SOLO_LECTURA = {"readOnlyHint": True, "openWorldHint": True}
 mcp = FastMCP("bcrp", instructions=(
     "Series oficiales del Banco Central de Reserva del Perú (BCRP). Primero busca el código con buscar_series; "
     "luego usa resumen para variaciones, promedios y extremos de un periodo, comparar_periodos para contrastar "
-    "dos intervalos y serie para los datos. graficar_serie guarda un gráfico en figuras/. No calcules a mano: "
+    "dos intervalos y serie para los datos. graficar_serie guarda un gráfico en figuras/ y exportar_series guarda "
+    "muchas series en un CSV de salidas/ para que una skill las procese. No calcules a mano: "
     "cita siempre el código de la serie, el periodo y la URL de la fuente."))
 
 
@@ -220,6 +221,43 @@ def comparar_periodos(codigo: str, desde_1: str, hasta_1: str, desde_2: str, has
             "advertencias": advertencias, "fuentes": [s1["fuente"], s2["fuente"]]}
 
 
+@mcp.tool(annotations={"readOnlyHint": False, "openWorldHint": True})
+def exportar_series(codigos: list[str], desde: str, hasta: str, archivo: str) -> dict:
+    """Descarga varias series del BCRP de una vez y las guarda en salidas/<archivo>.csv, con una fila por serie y
+    periodo: codigo, nombre, frecuencia, periodo, valor y fuente (la URL de la API).
+
+    Úsenla cuando un análisis necesita muchas series, por ejemplo las 53 de inversión bruta fija de los gobiernos
+    regionales y locales por departamento, o cuando una skill pide un CSV del BCRP. Así los datos pasan del BCRP
+    al análisis sin copiarlos a mano. archivo: solo letras, números, guiones o guiones bajos, sin carpeta ni
+    extensión. Fechas como en serie. Si una serie no existe o no tiene datos en el periodo, no la inventa: la
+    pone en «faltantes» y guarda las demás. Devuelve la ruta, cuántas series y filas guardó y los periodos.
+    """
+    if not re.fullmatch(r"[\w-]{1,80}", archivo):
+        raise ToolError("archivo debe tener solo letras, números, guiones o guiones bajos, sin carpeta ni extensión.")
+    codigos = list(dict.fromkeys(c.strip().upper() for c in codigos if c.strip()))
+    if not 1 <= len(codigos) <= 120:
+        raise ToolError("Pasen entre 1 y 120 códigos de serie.")
+    filas, faltantes = [], []
+    for codigo in codigos:
+        try:
+            s = _serie(codigo, desde, hasta)
+        except ToolError as e:
+            faltantes.append({"codigo": codigo, "error": str(e)})
+            continue
+        filas += [{"codigo": codigo, "nombre": s["nombre"], "frecuencia": s["frecuencia"], **d, "fuente": s["fuente"]}
+                  for d in s["datos"]]
+    if not filas:
+        raise ToolError(f"Ninguna de las {len(codigos)} series tiene datos entre {desde} y {hasta}: {faltantes}")
+    salidas = AQUI.parent / "salidas"
+    salidas.mkdir(exist_ok=True)
+    ruta = salidas / f"{archivo}.csv"
+    df = pd.DataFrame(filas)
+    df.to_csv(ruta, index=False, encoding="utf-8")
+    return {"archivo": f"salidas/{archivo}.csv", "series_guardadas": int(df.codigo.nunique()),
+            "filas": len(df), "periodos": sorted(df.periodo.unique().tolist()), "faltantes": faltantes,
+            "fuente": "https://estadisticas.bcrp.gob.pe/estadisticas/series/"}
+
+
 def _fecha_grafico(periodo):
     """Del periodo de serie ("2025-01", "2026-10-01", "2025-T1" o "2025") a una fecha para el eje."""
     if "-T" in periodo:
@@ -246,6 +284,10 @@ def graficar_serie(codigo: str, desde: str, hasta: str, titulo: str | None = Non
     valores = [d["valor"] for d in s["datos"]]
     fig, ax = plt.subplots(figsize=(9, 4.8), dpi=200)
     ax.plot(fechas, valores, color="#2a78d6", linewidth=2)
+    if s["frecuencia"] in ("Anual", "Trimestral") and len(fechas) <= 24:
+        # una marca por periodo, con su nombre («2024», «2024-T1»): sin esto salen meses en una serie anual
+        ax.set_xticks(fechas, [d["periodo"] for d in s["datos"]])
+    ax.yaxis.set_major_formatter(lambda v, _: f"{v:,.0f}" if abs(v) >= 1000 else f"{v:g}")
     ax.scatter([fechas[-1]], [valores[-1]], color="#2a78d6", s=30, zorder=3)
     ax.annotate(f"{valores[-1]:,.2f}", (fechas[-1], valores[-1]), xytext=(6, 0), textcoords="offset points",
                 va="center", fontsize=9, color="#0b0b0b")

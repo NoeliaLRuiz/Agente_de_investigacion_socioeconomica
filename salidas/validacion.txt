@@ -1,5 +1,5 @@
 VALIDACIÓN ENAHO 2024 · skill limpiando-enaho
-Ejecutado: 2026-11-05 23:51
+Ejecutado: 2026-11-06 00:38
 Archivos: 966-Modulo34.zip (sumaria-2024.dta) y 966-Modulo02.zip (enaho01-2024-200.dta)
 Unidades de análisis: hogares (sumaria, factor07 × mieperho) para cifras nacionales y territoriales;
 personas residentes habituales (módulo 02, facpob07) para sexo y edad.
