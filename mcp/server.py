@@ -7,6 +7,7 @@ Herramientas: buscar_series, serie, resumen, comparar_periodos (propia) y grafic
 Las cuentas las hace Python, no el modelo: así cada cifra sale de una llamada que se puede repetir.
 """
 import re
+import json
 import time
 import unicodedata
 from datetime import date
@@ -268,10 +269,10 @@ def graficar_serie(codigo: str, desde: str, hasta: str, titulo: str | None = Non
 
 
 # Recurso: la ficha de cualquiera de las 17 mil series, con una sola plantilla.
-@mcp.resource("bcrp://serie/{codigo}")
-def ficha_serie(codigo: str) -> dict:
+@mcp.resource("bcrp://serie/{codigo}", mime_type="application/json")
+def ficha_serie(codigo: str) -> str:
     """Ficha de una serie del BCRP: nombre, categoría, frecuencia, desde cuándo hay datos y última actualización."""
-    return _ficha(codigo)
+    return json.dumps(_ficha(codigo), ensure_ascii=False)
 
 
 # Prompts: recetas que piden citar la fuente de cada cifra.
