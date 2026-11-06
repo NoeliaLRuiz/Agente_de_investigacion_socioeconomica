@@ -1,0 +1,37 @@
+anio,grupo,codigo,categoria,pobreza_pct,pobreza_extrema_pct,poblacion_expandida,n_muestra,unidad_muestra,ponderador
+2024,nacional,,Perú,27.58,5.5,34482700,33691,hogares,factor07 × mieperho
+2024,area,,Rural,39.3,15.52,6595188,11660,hogares,factor07 × mieperho
+2024,area,,Urbana,24.81,3.14,27887512,22031,hogares,factor07 × mieperho
+2024,departamento,01,Amazonas,25.75,6.01,442355,1243,hogares,factor07 × mieperho
+2024,departamento,02,Áncash,22.77,5.8,1212494,1393,hogares,factor07 × mieperho
+2024,departamento,03,Apurímac,23.96,5.24,494188,913,hogares,factor07 × mieperho
+2024,departamento,04,Arequipa,15.78,1.65,1421684,1506,hogares,factor07 × mieperho
+2024,departamento,05,Ayacucho,32.76,9.09,775447,1160,hogares,factor07 × mieperho
+2024,departamento,06,Cajamarca,45.01,19.72,1554586,1469,hogares,factor07 × mieperho
+2024,departamento,07,Callao,33.86,5.04,1142618,1027,hogares,factor07 × mieperho
+2024,departamento,08,Cusco,18.54,2.1,1409467,1230,hogares,factor07 × mieperho
+2024,departamento,09,Huancavelica,33.4,11.16,543103,1042,hogares,factor07 × mieperho
+2024,departamento,10,Huánuco,38.96,12.2,926653,1244,hogares,factor07 × mieperho
+2024,departamento,11,Ica,6.01,0.15,854203,1500,hogares,factor07 × mieperho
+2024,departamento,12,Junín,18.5,3.82,1450149,1506,hogares,factor07 × mieperho
+2024,departamento,13,La Libertad,30.19,6.56,2080789,1509,hogares,factor07 × mieperho
+2024,departamento,14,Lambayeque,14.04,0.5,1349731,1302,hogares,factor07 × mieperho
+2024,departamento,15,Lima,27.07,3.12,11279908,4544,hogares,factor07 × mieperho
+2024,departamento,16,Loreto,42.97,14.98,1129071,1359,hogares,factor07 × mieperho
+2024,departamento,17,Madre de Dios,11.15,1.53,165992,603,hogares,factor07 × mieperho
+2024,departamento,18,Moquegua,10.97,2.38,198386,963,hogares,factor07 × mieperho
+2024,departamento,19,Pasco,38.97,8.33,327776,865,hogares,factor07 × mieperho
+2024,departamento,20,Piura,31.86,4.41,1988570,1611,hogares,factor07 × mieperho
+2024,departamento,21,Puno,39.94,12.49,1586886,1123,hogares,factor07 × mieperho
+2024,departamento,22,San Martín,22.02,4.39,947446,1347,hogares,factor07 × mieperho
+2024,departamento,23,Tacna,23.99,2.65,380755,1271,hogares,factor07 × mieperho
+2024,departamento,24,Tumbes,26.9,1.06,261959,842,hogares,factor07 × mieperho
+2024,departamento,25,Ucayali,27.07,3.26,558484,1119,hogares,factor07 × mieperho
+2024,nacional_personas,,Perú,27.53,5.5,34147768,108664,personas,facpob07
+2024,sexo,,Hombre,27.37,5.37,16453003,52587,personas,facpob07
+2024,sexo,,Mujer,27.68,5.62,17694764,56077,personas,facpob07
+2024,grupo_edad,,0 a 14 años,37.52,8.59,7941994,26489,personas,facpob07
+2024,grupo_edad,,15 a 29 años,25.97,4.5,7512400,23122,personas,facpob07
+2024,grupo_edad,,30 a 44 años,27.87,5.59,6689119,20648,personas,facpob07
+2024,grupo_edad,,45 a 59 años,21.41,3.58,6130223,19408,personas,facpob07
+2024,grupo_edad,,60 años a más,22.02,4.49,5874030,18997,personas,facpob07

@@ -1,0 +1,113 @@
+ ▐▛███▛█   Claude Code v2.1.319
+▝▜██████▀  Opus 5.5 · Claude Pro
+ ▝▝   ▝▝   C:\GitHub\Agente_de_investigacion_socioeconomica
+
+
+❯ Haz un mapa de la pobreza monetaria por departamento con ENAHO 2024           
+
+● Skill(mapeando-enaho)
+  ⎿  Successfully loaded skill
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● salidas/hogares_2024.parquet no existe, así que primero voy a armar la base
+  limpia con limpiando-enaho.
+
+● Skill(limpiando-enaho)
+  ⎿  Successfully loaded skill
+
+● Los dos ZIP del INEI están en datos/. Ejecuto la limpieza.
+
+● Bash(uv run .claude/skills/limpiando-enaho/scripts/limpiar.py --anio 2024)
+  ⎿  warning: `VIRTUAL_ENV=C:\GitHub\Python_intermedio_2026\tarea_2\.venv`
+     does not match the project environment path `.venv` and will be ignore
+     d; use `--active` to target the active environment instead
+     … +40 lines (ctrl+o to expand)
+  ⎿  Updated salidas\validacion.txt (+1 -1)
+      1  VALIDACIÓN ENAHO 2024 · skill limpiando-enaho
+      2 -Ejecutado: 2026-11-05 23:34                                     
+      2 +Ejecutado: 2026-11-05 23:51                                     
+      3  Archivos: 966-Modulo34.zip (sumaria-2024.dta) y 966-Modulo02.zip
+          (enaho01-2024-200.dta)
+      4  Unidades de análisis: hogares (sumaria, factor07 × mieperho) par
+         a cifras nacionales y territoriales;
+      5  personas residentes habituales (módulo 02, facpob07) para sexo y
+          edad.
+
+● Pasaron las 17 verificaciones. Ahora hago el mapa.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● La comparación de cifras salió bien (25 de 25 departamentos, diferencia 0.00
+  pp), pero el script se cae al dibujar las etiquetas. Reviso el código.
+
+  Read 1 file (ctrl+o to expand)
+
+● Es un error de sangría en el código, no de datos: la línea 112 quedó dentro
+  del bloque de Callao y nunca se ejecuta. Le quito la sangría de más y vuelvo a
+  correr el script.
+
+● Update(.claude\skills\mapeando-enaho\scripts\mapear.py)
+  ⎿  Added 1 line, removed 1 line
+      109                          color=TEXTO, ha="right", va="center",
+      110                          arrowprops={"arrowstyle": "-", "color"
+           : TEXTO_2, "linewidth": 0.6})
+      111              continue
+      112 -            borde = "#184f95" if color == "white" else "white"
+          -   # halo para que los límites no tapen la cifra              
+      112 +        borde = "#184f95" if color == "white" else "white"   #
+          + halo para que los límites no tapen la cifra                  
+      113          ax.text(punto.x, punto.y, f"{f.pct:.1f}", fontsize=6.5
+           , color=color, ha="center", va="center",
+      114                  path_effects=[patheffects.withStroke(linewidth
+           =2, foreground=borde)])
+      115      ax.set_axis_off()
+
+● Bash(PYTHONIOENCODING=utf-8 uv run
+      .claude/skills/mapeando-enaho/scripts/mapear.py --indicador pobreza 2>&1 |
+      grep -v VIRTUAL_ENV; echo "---"; cat salidas/comparacio…)
+  ⎿  Comparación con la referencia de la Sesión 16: 25 de 25 departamentos
+     coinciden (tolerancia ±0.1 pp; diferencia máxima 0.00 pp). Detalle en
+     salidas/comparacion_mapa.csv
+     … +52 lines (ctrl+o to expand)
+  ⎿  1 file changed (binary, mode only or too large to show)
+  ⎿  (timeout 10m)
+  ⎿  Found 1 new diagnostic issue in 1 file (ctrl+o to expand)
+
+● Ahora lo comparo a ojo con la referencia.
+
+  Read 2 files (ctrl+o to expand)
+
+● Hice el mapa: mapas/pobreza_departamento.png
+
+  Resultados (INEI, ENAHO 2024; cálculo propio con peso_personas = factor07 ×
+  mieperho):
+
+  - Mayor pobreza monetaria:
+    a. Cajamarca: 45.0 %
+    b. Loreto: 43.0 %
+    c. Puno: 39.9 %
+  - Menor: Ica, con 6.0 %.
+
+  Lima tiene 27.1 % y Callao 33.9 %. Van por separado, y Callao se rotula fuera
+  del mapa porque es muy pequeño.
+
+  Comparación con la referencia (salidas/comparacion_mapa.csv): 25 de 25
+  departamentos coinciden con la Sesión 16, con diferencia máxima de 0.00 pp.
+  También los comparé a ojo. Los más oscuros son los mismos en los dos mapas:
+  Cajamarca, Loreto, Puno, Huánuco y Pasco. Ica es el más claro en ambos. La
+  referencia usa naranjas y este mapa azules, pero el orden de los departamentos
+  es el mismo.
+
+  Cómo llegué al mapa:
+  - Base limpia: salidas/hogares_2024.parquet no existía, así que primero corrí
+    limpiando-enaho. Pasaron las 17 verificaciones, entre ellas la pobreza
+    nacional de 27.58 % contra 27.6 % de referencia.
+  - Arreglo en el script del mapa: mapear.py se caía con UnboundLocalError: 
+    borde al rotular los departamentos. La línea borde = ... estaba con sangría
+    de más, debajo del continue de Callao, y por eso nunca se ejecutaba. Le
+    quité esa sangría en .claude/skills/mapeando-enaho/scripts/mapear.py:112.
+    Esa línea solo elige el color del borde de las etiquetas, así que el cambio
+    no toca la unión ni las cifras. Ese archivo está sin commitear.
+
+✻ Sautéed for 2m 6s · done 11:52 PM

@@ -1,0 +1,26 @@
+departamento,nombre,calculado,referencia,diferencia,coincide,n_hogares
+01,Amazonas,25.7,25.7,0.0,True,1243
+02,Áncash,22.8,22.8,0.0,True,1393
+03,Apurímac,24.0,24.0,0.0,True,913
+04,Arequipa,15.8,15.8,0.0,True,1506
+05,Ayacucho,32.8,32.8,0.0,True,1160
+06,Cajamarca,45.0,45.0,0.0,True,1469
+07,Callao,33.9,33.9,0.0,True,1027
+08,Cusco,18.5,18.5,0.0,True,1230
+09,Huancavelica,33.4,33.4,0.0,True,1042
+10,Huánuco,39.0,39.0,0.0,True,1244
+11,Ica,6.0,6.0,0.0,True,1500
+12,Junín,18.5,18.5,0.0,True,1506
+13,La Libertad,30.2,30.2,0.0,True,1509
+14,Lambayeque,14.0,14.0,0.0,True,1302
+15,Lima,27.1,27.1,0.0,True,4544
+16,Loreto,43.0,43.0,0.0,True,1359
+17,Madre de Dios,11.1,11.1,0.0,True,603
+18,Moquegua,11.0,11.0,0.0,True,963
+19,Pasco,39.0,39.0,0.0,True,865
+20,Piura,31.9,31.9,0.0,True,1611
+21,Puno,39.9,39.9,0.0,True,1123
+22,San Martín,22.0,22.0,0.0,True,1347
+23,Tacna,24.0,24.0,0.0,True,1271
+24,Tumbes,26.9,26.9,0.0,True,842
+25,Ucayali,27.1,27.1,0.0,True,1119

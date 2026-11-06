@@ -1,0 +1,207 @@
+ ▐▛███▛█   Claude Code v2.1.318
+▝▜██████▀  Opus 5.5 · Claude Pro
+ ▝▝   ▝▝   C:\GitHub\Agente_de_investigacion_socioeconomica
+
+
+❯ /skills 
+  ⎿  Updated 1 skill override
+
+❯ Haz un mapa de la pobreza monetaria por departamento con ENAHO 2024           
+
+● Skill(mapeando-enaho)
+  ⎿  Successfully loaded skill
+
+  Listed 1 directory (ctrl+o to expand)
+
+● Ya existen la base limpia y el GeoJSON, así que paso directo al script.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● No ERRORs. Now I'll compare the map visually with the reference.
+
+  Read 2 files (ctrl+o to expand)
+
+● Hice el mapa, y coincide con la referencia de la Sesión 16 en los 25
+  departamentos (diferencia de 0.0 puntos).
+
+  Mapa: mapas/pobreza_departamento.png
+
+  - Los 3 con más pobreza monetaria: Cajamarca (45.0 %), Loreto (43.0 %) y Puno
+    (39.9 %).
+  - El de menos: Ica (6.0 %).
+
+  Comparación con la referencia (salidas/comparacion_mapa.csv): 25 de 25
+  departamentos coinciden, con una diferencia máxima de 0.00 puntos y una
+  tolerancia de ±0.1. Los departamentos más oscuros son los mismos en los dos
+  mapas: Cajamarca, Loreto, Puno, y Huánuco y Pasco, que tienen 39.0 % cada uno.
+  Mi mapa usa una escala de azules y la referencia una de naranjas, pero el
+  orden de los departamentos es igual.
+
+  Sobre el método:
+  - Uní los datos con los límites por código (ubigeo[:2] = FIRST_IDDP), no por
+    nombre. Ningún departamento quedó sin dato.
+  - La pobreza se pondera con factor07 × mieperho.
+  - Lima (27.1 %) y Callao (33.9 %) van por separado. Callao tiene su etiqueta
+    fuera del mapa porque es muy pequeño, y su pobreza es casi 7 puntos más alta
+    que la de Lima.
+  - La escala de color va de 0 a 50 y la leyenda dice la unidad: «% de personas
+    en pobreza monetaria».
+
+  Un detalle de presentación: la etiqueta «39.0» de Huánuco queda un poco tapada
+  por las líneas de los límites. No cambia ninguna cifra, pero conviene moverla
+  si el mapa va a una presentación.
+
+✻ Baked for 30s · done 11:30 PM
+
+❯ Grafica la pobreza urbana y rural y por sexo con la ENAHO 2024                
+
+● Skill(graficando-enaho)
+  ⎿  Successfully loaded skill
+
+● The clean bases already exist (I used them for the map), so I'll run the
+  script directly.
+
+  Read 2 files, ran 1 shell command (ctrl+o to expand)
+
+● Hice los dos gráficos y los revisé: el título, las etiquetas y la fuente se
+  leen bien en ambos.
+
+  1. Por área: figuras/enaho_pobreza_area.png
+
+  ┌────────┬───────────────────┐
+  │  Área  │ Pobreza monetaria │
+  ├────────┼───────────────────┤
+  │ Rural  │ 39.30 %           │
+  ├────────┼───────────────────┤
+  │ Urbana │ 24.81 %           │
+  ├────────┼───────────────────┤
+  │ Perú   │ 27.58 %           │
+  └────────┴───────────────────┘
+
+  La pobreza rural es 14.5 puntos más alta que la urbana. En el campo es pobre
+  casi 4 de cada 10 personas, y en las ciudades 1 de cada 4. La cifra urbana
+  queda por debajo del promedio de Perú y la rural bastante por encima.
+
+  2. Por sexo: figuras/enaho_pobreza_sexo.png
+
+  ┌────────┬───────────────────┐
+  │  Sexo  │ Pobreza monetaria │
+  ├────────┼───────────────────┤
+  │ Mujer  │ 27.68 %           │
+  ├────────┼───────────────────┤
+  │ Hombre │ 27.37 %           │
+  ├────────┼───────────────────┤
+  │ Perú   │ 27.53 %           │
+  └────────┴───────────────────┘
+
+  Entre mujeres y hombres hay solo 0.3 puntos de diferencia. Los dos quedan casi
+  sobre el promedio de Perú.
+
+  ¿Por qué el promedio de Perú cambia entre los dos gráficos (27.58 % y 27.53 
+  %)? Cada gráfico usa un ponderador distinto:
+  - El de área usa los hogares de la sumaria, ponderados con factor07 × 
+    mieperho. Es el método oficial del INEI.
+  - El de sexo necesita datos de cada persona, así que usa a los residentes
+    habituales del módulo 02, ponderados con facpob07.
+
+  Por eso los promedios difieren en 0.05 puntos. Cada gráfico lo dice en su nota
+  al pie.
+
+✻ Cooked for 16s · done 11:32 PM
+
+❯ /limpiando-enaho 2024                                                         
+
+● Bash(ls -la datos/966-Modulo34.zip datos/966-Modulo02.zip &&
+      PYTHONIOENCODING=utf-8 uv run
+      .claude/skills/limpiando-enaho/scripts/limpiar.py --anio 2024 2>&1 |
+      grep…)
+  ⎿  -rw-r--r-- 1 nofer 197609  5793097 Nov  5 22:13 datos/966-Modulo02.zip
+     -rw-r--r-- 1 nofer 197609 15935617 Nov  5 22:12 datos/966-Modulo34.zip
+     VALIDACIÓN ENAHO 2024 · skill limpiando-enaho
+     … +38 lines (ctrl+o to expand)
+  ⎿  Updated salidas\validacion.txt (+1 -1)
+      1  VALIDACIÓN ENAHO 2024 · skill limpiando-enaho
+      2 -Ejecutado: 2026-11-05 23:20                                     
+      2 +Ejecutado: 2026-11-05 23:34                                     
+      3  Archivos: 966-Modulo34.zip (sumaria-2024.dta) y 966-Modulo02.zip
+          (enaho01-2024-200.dta)
+      4  Unidades de análisis: hogares (sumaria, factor07 × mieperho) par
+         a cifras nacionales y territoriales;
+      5  personas residentes habituales (módulo 02, facpob07) para sexo y
+          edad.
+  ⎿  (timeout 10m)
+
+  Read 1 file (ctrl+o to expand)
+
+● Volví a limpiar la ENAHO 2024 y la base aprobó las 17 verificaciones de
+  salidas/validacion.txt, sin ninguna [FALLÓ]. Las cifras son las mismas de
+  antes, así que el mapa y los gráficos que ya hicimos siguen valiendo.
+
+  Lo que revisa la validación:
+  - No hay hogares ni personas repetidos. La sumaria tiene 33,691 hogares y el
+    módulo 02 tiene 117,721 filas.
+  - De esas filas, 108,664 son residentes habituales. Al unir personas con
+    hogares no se perdió ni se duplicó ninguna persona.
+  - Los códigos se leyeron como texto, conservando los ceros iniciales. Están
+    los 25 departamentos (01 a 25).
+  - La variable de pobreza del INEI coincide al 100 % con comparar el gasto por
+    persona con la línea de pobreza.
+  - Las cifras de referencia coinciden: Perú 27.58 % (referencia 27.6 %), urbana
+    24.81 %, rural 39.30 %, pobreza extrema 5.50 % y Lima Metropolitana 28.21
+    %.
+  - Sin ponderar, la pobreza saldría 20.22 % en vez de 27.58 %. Por eso siempre
+    se usan los factores de expansión.
+
+  Archivos guardados en salidas/:
+  - hogares_2024.parquet: 33,691 hogares
+  - personas_2024.parquet: 108,664 personas
+  - indicadores.csv: 36 filas con las cifras
+
+  Cifras principales
+
+  ┌────────────────┬──────────────────┬────────────────┬────────────────────┐
+  │     Grupo      │     Pobreza      │    Pobreza     │     Ponderador     │
+  │                │    monetaria     │    extrema     │                    │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ Perú (hogares) │ 27.58 %          │ 5.50 %         │ factor07 ×         │
+  │                │                  │                │ mieperho           │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ Urbana         │ 24.81 %          │ 3.14 %         │ factor07 ×         │
+  │                │                  │                │ mieperho           │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ Rural          │ 39.30 %          │ 15.52 %        │ factor07 ×         │
+  │                │                  │                │ mieperho           │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ Perú           │ 27.53 %          │ 5.50 %         │ facpob07           │
+  │ (personas)     │                  │                │                    │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ Hombre         │ 27.37 %          │ 5.37 %         │ facpob07           │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ Mujer          │ 27.68 %          │ 5.62 %         │ facpob07           │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ 0 a 14 años    │ 37.52 %          │ 8.59 %         │ facpob07           │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ 15 a 29 años   │ 25.97 %          │ 4.50 %         │ facpob07           │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ 30 a 44 años   │ 27.87 %          │ 5.59 %         │ facpob07           │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ 45 a 59 años   │ 21.41 %          │ 3.58 %         │ facpob07           │
+  ├────────────────┼──────────────────┼────────────────┼────────────────────┤
+  │ 60 años a más  │ 22.02 %          │ 4.49 %         │ facpob07           │
+  └────────────────┴──────────────────┴────────────────┴────────────────────┘
+
+  Fuente: INEI, ENAHO 2024; cálculo propio con el ponderador de cada fila.
+
+  Por departamento (con factor07 × mieperho):
+  - La pobreza va de 45.01 % en Cajamarca a 6.01 % en Ica.
+  - La pobreza extrema más alta también es la de Cajamarca (19.72 %), seguida de
+    Loreto (14.98 %).
+
+  Hay dos promedios nacionales porque se calculan de dos formas. Con hogares da
+  27.58 % y con personas da 27.53 %, una diferencia de 0.05 puntos.
+
+  Las diferencias entre grupos solo describen la situación. Por ejemplo, la
+  pobreza de los niños de 0 a 14 años es 11.6 puntos más alta que la de los
+  adultos de 45 a 59. Eso no muestra que la edad cause la pobreza.
+
+✻ Worked for 21s · done 11:34 PM
