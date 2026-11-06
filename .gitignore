@@ -1,1 +1,11 @@
+# entorno
+.venv/
+__pycache__/
+.pytest_cache/
 
+# datos pesados: microdatos del INEI (datos/) y catálogo del BCRP (mcp/datos/), se bajan con el README
+datos/
+salidas/*.parquet
+
+# configuración local de Claude Code
+.claude/settings.local.json
