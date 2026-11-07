@@ -199,12 +199,11 @@ datos en [`evaluacion/resultados.csv`](evaluacion/resultados.csv).
 
 ## Evidencias del uso de IA
 
-Todo el proyecto se desarrolló con Claude Code (Opus 5.5 y Sonnet 5.5). Las conversaciones están en
-[`evidencias_ia/`](evidencias_ia/), sin claves ni datos personales:
+El proyecto se desarrolló con apoyo de Claude Code (Opus 5.5 y Sonnet 5.5). 
 
 | Carpeta | Contenido |
 |---|---|
-| `evidencias_ia/desarrollo/` | La conversación completa en la que se planificó y desarrolló el proyecto: servidor, Skills, cruce, evaluación y README |
+| `evidencias_ia/desarrollo/` | La conversación en la que se planificó y desarrolló el proyecto con Claude Code: servidor, Skills, cruce, evaluación y README |
 | `evidencias_ia/mcp/` | Pruebas del MCP en Claude Code: búsqueda, resumen, comparación, recurso, prompt y gráfico |
 | `evidencias_ia/skills/` | Activación de las Skills, individual y en lenguaje natural, y el encadenamiento limpiando → mapeando |
 | `evidencias_ia/integracion/` | La ejecución integradora completa y la corrección de los gráficos |

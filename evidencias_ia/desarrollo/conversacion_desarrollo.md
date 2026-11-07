@@ -90,63 +90,6 @@ El proyecto estará completo cuando el agente pueda responder una pregunta real 
 
 El propósito es desarrollar competencias para construir sistemas de inteligencia artificial que no se limiten a generar respuestas, sino que sean capaces de utilizar herramientas, ejecutar procedimientos reproducibles y producir evidencia confiable para el análisis de datos y la investigación social.
 
-¡Éxitos con sus proyectos! 🚀
-
-# 🤖 Tarea 4 – Agente de investigación socioeconómica: MCP, Skills y datos oficiales del Perú
-Pregunta guía del trabajo
-¿Pueden construir un agente de inteligencia artificial capaz de investigar la realidad socioeconómica peruana utilizando datos oficiales del INEI y el BCRP, combinando servidores MCP, Skills de Claude Code y herramientas de análisis reproducible?
-
-En este proyecto desarrollarán un agente de investigación socioeconómica que integre dos fuentes oficiales de información:
-
-INEI – ENAHO 2024: microdatos para estudiar pobreza monetaria, desigualdades territoriales y características socioeconómicas de la población.
-BCRP – Series estadísticas: indicadores macroeconómicos para analizar inflación, actividad económica, tipo de cambio u otras variables relevantes.
-El agente deberá interpretar preguntas formuladas en lenguaje natural, consultar las fuentes correspondientes, procesar los datos, ejecutar cálculos verificables y producir gráficos, mapas e informes.
-
-El objetivo principal no es construir un chatbot que responda utilizando únicamente su conocimiento previo, sino un sistema que utilice herramientas especializadas para producir respuestas verificables y reproducibles.
-
-📌 Instrucciones generales
-El trabajo es individual y corresponde a la Tarea 4 del curso Python Intermedio.
-
-1. Materiales de referencia
-El proyecto deberá integrar los contenidos de las siguientes sesiones:
-
-Sesión 04 – MCP: Claude conectado a sus datos
-
-https://github.com/d2cml-ai/Data-Science-Python/tree/main/sessions/04-mcp-claude-code
-
-Sesión 16 – Skills de Claude Code: limpiar, graficar y mapear la ENAHO
-
-https://github.com/d2cml-ai/Data-Science-Python/tree/main/sessions/16-skills-enaho
-
-Los estudiantes deberán utilizar como referencia los ejemplos de FastMCP, las pruebas del servidor BCRP y las reglas de procesamiento de la ENAHO.
-
-No será suficiente copiar y ejecutar los proyectos de las sesiones por separado. La tarea exige integrarlos en un agente funcional, desarrollar componentes propios y evaluar su desempeño.
-
-2. Herramientas y tecnologías
-Se utilizarán:
-
-Claude Code: agente principal para coordinar el proyecto.
-Python y uv: desarrollo y gestión del entorno.
-FastMCP: construcción del servidor MCP.
-Pandas y PyArrow: procesamiento de microdatos.
-GeoPandas: análisis y representación territorial.
-Matplotlib o Plotly: generación de visualizaciones.
-Pytest: pruebas automatizadas.
-Git y GitHub: versionamiento, documentación y entrega.
-Pueden incorporar otras bibliotecas o herramientas cuando su utilización esté justificada.
-
-3. Datos obligatorios
-Fuente	Datos	Uso
-INEI	ENAHO 2024, módulo 34 (sumaria)	Pobreza e indicadores de hogares
-INEI	ENAHO 2024, módulo 02 (miembros)	Características individuales
-Repositorio del curso	Límites departamentales del Perú	Mapas territoriales
-BCRP	Series estadísticas oficiales	Análisis macroeconómico
-Enlaces de referencia:
-
-[ENAHO 2024 – Módulo 34](https://proyectos.inei.gob.pe/iinei/srienaho/descarga/STATA/966-Modulo34.zip)
-[ENAHO 2024 – Módulo 02](https://proyectos.inei.gob.pe/iinei/srienaho/descarga/STATA/966-Modulo02.zip)
-[GeoJSON departamental del Perú](https://raw.githubusercontent.com/d2cml-ai/Data-Science-Python/main/sessions/06-geoespacial/lab/Data/peru_departamental_simple.geojson)
-[Estadísticas del BCRP](https://estadisticas.bcrp.gob.pe/estadisticas/series/)
 Valores de referencia para validar ENAHO 2024:
 
 Indicador	Referencia
@@ -164,47 +107,6 @@ Los cálculos de ENAHO deben aplicar correctamente los factores de expansión y 
 Tampoco se deberán presentar asociaciones descriptivas como relaciones causales demostradas.
 
 Las cifras no pueden introducirse manualmente como resultados: deben obtenerse mediante el procesamiento de los datos y validarse posteriormente.
-
-🤖 Uso de inteligencia artificial y evidencias de desarrollo
-Se permite y fomenta el uso de herramientas de inteligencia artificial durante todas las etapas del proyecto.
-
-Los estudiantes podrán utilizar Claude Code, ChatGPT, Codex, OpenCode, Gemini u otros asistentes para:
-
-Desarrollar y depurar código en Python.
-Configurar servidores MCP.
-Crear, modificar y ejecutar Skills.
-Procesar datos y elaborar visualizaciones.
-Diseñar pruebas automatizadas.
-Identificar y corregir errores.
-Interpretar resultados y preparar el informe final.
-No se evaluará cuánto código escribieron manualmente, sino la funcionalidad, calidad técnica, reproducibilidad y validez de los resultados.
-
-Sin embargo, cada estudiante deberá comprender el funcionamiento de su proyecto, verificar sus resultados y garantizar que los componentes desarrollados cumplan los requisitos establecidos.
-
-Evidencias obligatorias
-Como requisito de entrega, deberán presentar el registro completo de las conversaciones utilizadas con asistentes de inteligencia artificial durante el desarrollo del proyecto, mediante una de las siguientes modalidades:
-
-Opción A – Capturas de pantalla
-
-Capturas legibles de las conversaciones completas.
-Archivos numerados y organizados cronológicamente.
-Deben permitir identificar las instrucciones proporcionadas y las respuestas del asistente.
-Opción B – Exportación de conversaciones
-
-Exportación del historial completo de las sesiones utilizadas.
-Se aceptarán formatos como Markdown, TXT, JSON o HTML.
-Los archivos deben permitir reconstruir el proceso de desarrollo.
-En ambos casos, las evidencias deberán abarcar el desarrollo del servidor MCP, las Skills, la integración del agente, las pruebas, las correcciones y el informe final.
-
-Todos los archivos deberán almacenarse en una carpeta evidencias_ia/ dentro del repositorio. Si el tamaño impide subirlos a GitHub, se podrá incluir un enlace público a una carpeta externa que contenga las evidencias completas.
-
-Warning
-
-Antes de publicar las conversaciones, deberán ocultar claves API, contraseñas, tokens, datos personales e información confidencial.
-
-No se aceptarán únicamente capturas aisladas de los resultados finales como sustituto del historial de desarrollo.
-
-La documentación del uso de IA es obligatoria y será considerada en la evaluación de documentación y reproducibilidad.
 
 🗂️ Organización del repositorio
 Cada estudiante deberá crear una carpeta tarea_4/ dentro de su repositorio del curso o utilizar un repositorio público independiente.
@@ -301,14 +203,6 @@ resumen	Calcular variaciones, promedios, mínimos y máximos
 Herramienta propia	Incorporar una funcionalidad adicional de análisis
 La herramienta propia deberá ser útil y no limitarse a duplicar las funciones anteriores.
 
-Por ejemplo:
-
-comparar_series: comparar dos indicadores en períodos compatibles.
-correlacion: calcular la correlación entre series, alineando períodos y tratando valores faltantes.
-graficar_serie: generar y guardar un gráfico de una serie oficial.
-comparar_periodos: comparar el comportamiento de un indicador entre dos intervalos.
-Los cálculos numéricos deberán realizarse mediante código Python y no mediante estimaciones improvisadas del modelo de lenguaje.
-
 2. Recursos y prompts MCP
 
 Implementar como mínimo:
@@ -370,16 +264,6 @@ La unión entre la base de personas y hogares deberá utilizar:
 
 merge(..., validate="m:1")
 La Skill deberá verificar que la unión no genere duplicaciones inesperadas.
-
-Validaciones mínimas
-Pobreza monetaria nacional cercana a 27.6 %.
-108,664 residentes habituales.
-Identificación correcta de los 25 códigos territoriales.
-Ninguna duplicación indebida de registros.
-Aplicación correcta de los factores de expansión.
-El archivo validacion.txt deberá mostrar los resultados y señalar las verificaciones aprobadas y fallidas.
-
-Si una validación esencial falla, la Skill deberá detener el proceso o devolver un mensaje de error explícito. No se aceptará corregir artificialmente los resultados para que coincidan con los valores de referencia.
 
 Skill 2 – graficando-enaho
 Desarrollar una Skill que produzca visualizaciones a partir de los datos procesados.
@@ -601,164 +485,6 @@ Referencia a las evidencias del uso de inteligencia artificial.
 El repositorio deberá incluir las salidas necesarias para comprobar que el sistema fue ejecutado.
 
 Las conversaciones completas con los asistentes de IA deberán estar disponibles en evidencias_ia/ o mediante un enlace público incluido en el README, con la información sensible previamente ocultada.
-
-Rúbrica Parte 4 [4 pts]
-Criterio	Pts
-Diseño de 10 preguntas y respuestas esperadas verificables	1.0
-Experimento comparativo ejecutado en ambos modos	1.5
-Análisis de aciertos, errores, uso de herramientas y tiempo	0.5
-README, reproducibilidad y evidencias completas del uso de IA	1.0
-Total	4.0
-💡 Ideas de innovación (opcionales)
-Los estudiantes que hayan completado los requisitos principales podrán incorporar mejoras como:
-
-Crear una Skill adicional para generar automáticamente informes socioeconómicos.
-Integrar un segundo MCP con otra fuente oficial de datos.
-Diseñar mecanismos para detectar inconsistencias entre resultados de diferentes herramientas.
-Construir un dashboard para explorar los resultados generados por el agente.
-Implementar pruebas de robustez frente a solicitudes ambiguas o datos inexistentes.
-Incorporar análisis de cómo cambia la calidad de las respuestas al desactivar determinadas herramientas.
-Automatizar la elaboración de informes con tablas, gráficos y referencias.
-Estas mejoras podrán contribuir a obtener la máxima calificación dentro de los criterios establecidos, pero no sustituyen los requisitos obligatorios ni garantizan puntos adicionales fuera de la rúbrica.
-
-✅ Lista de verificación antes de entregar
-Servidor MCP
-
-El servidor MCP funciona y cuenta con las cuatro herramientas requeridas.
-
-Incluye un recurso y un prompt funcionales.
-
-Supera las 8 pruebas originales y las 2 pruebas adicionales.
-
-El archivo .mcp.json permite conectarlo a Claude Code.
-
-Las consultas devuelven datos de fuentes oficiales verificables.
-Skills de ENAHO
-
-Existen las tres Skills solicitadas con sus archivos SKILL.md.
-
-La limpieza reproduce las validaciones de ENAHO 2024.
-
-Los indicadores utilizan los factores de expansión adecuados.
-
-Los gráficos contienen títulos, unidades y fuentes.
-
-El mapa representa las 25 unidades territoriales.
-
-Las Skills pueden activarse y coordinarse correctamente.
-Integración del agente
-
-El agente utiliza efectivamente MCP y Skills en una misma ejecución.
-
-La pregunta de investigación requiere información del BCRP y ENAHO.
-
-Existe un informe con al menos 3 hallazgos sustentados.
-
-El informe contiene un gráfico del BCRP, un gráfico de ENAHO y un mapa.
-
-Se verificaron manualmente al menos 3 afirmaciones numéricas.
-Evaluación y documentación
-
-Se construyeron 10 preguntas de evaluación.
-
-Se ejecutó la comparación con y sin MCP/Skills.
-
-Los resultados están documentados en archivos reproducibles.
-
-El README incluye instalación, arquitectura y procedimiento de ejecución.
-
-El repositorio es público y sus enlaces funcionan.
-Uso de inteligencia artificial
-
-Se adjuntaron capturas completas o exportaciones de las conversaciones utilizadas.
-
-Las evidencias están organizadas en evidencias_ia/ o mediante un enlace público.
-
-Los registros permiten revisar el proceso de desarrollo del MCP, las Skills, la integración y la evaluación.
-
-Se ocultaron claves API, contraseñas, tokens y datos personales.
-📤 Formato y canal de entrega
-Cada estudiante deberá publicar un comentario en este Issue utilizando el siguiente formato:
-
-### Tarea 4 – Individual
-
-**Estudiante:** Nombre completo (@usuario_github)
-
-**Pregunta de investigación:** ...
-
-**Repositorio de GitHub:** https://github.com/...
-
-**Informe final:** https://github.com/.../informes/informe_final.md
-
-**Pruebas MCP:** XX/10 aprobadas
-
-**Validación ENAHO:**
-- Pobreza nacional 2024: XX.X %
-- Residentes habituales: XX,XXX
-- Unidades territoriales procesadas: XX/25
-
-**Evaluación del agente:**
-- Sin MCP/Skills: X/10 respuestas correctas
-- Con MCP/Skills: X/10 respuestas correctas
-- Resultados completos: https://github.com/.../evaluacion/resultados.csv
-
-**Evidencia de integración MCP + Skills:** https://github.com/...
-
-**Evidencias de uso de IA:** https://github.com/...
-Precisiones sobre la entrega
-Repositorio de GitHub: deberá contener el código, las configuraciones, las Skills y los resultados.
-Informe final: enlace directo al documento de investigación desarrollado con el agente.
-Pruebas MCP: cantidad de pruebas automatizadas aprobadas, respaldada por el código y su ejecución.
-Validación ENAHO: resultados calculados mediante el procesamiento de los microdatos.
-Evaluación del agente: resultados obtenidos al ejecutar las mismas diez preguntas en las dos condiciones.
-Evidencia de integración: registro o demostración de una ejecución en la que Claude Code utilice conjuntamente MCP y Skills.
-Evidencias de uso de IA: capturas completas o exportaciones de las conversaciones utilizadas durante el desarrollo.
-No será necesario adjuntar nuevamente los microdatos originales de ENAHO, siempre que se proporcionen instrucciones reproducibles para obtenerlos.
-
-Todos los enlaces deberán ser públicos y accesibles sin solicitar permisos adicionales.
-
-⏰ Fecha límite de entrega
-Domingo 8 de noviembre de 2026, hasta las 11:59 p. m. (hora de Perú / UTC-5).
-
-La entrega deberá realizarse mediante un comentario en este Issue de GitHub, siguiendo el formato establecido y proporcionando todos los enlaces solicitados.
-
-Política de entregas fuera de plazo
-Important
-
-No se aceptarán trabajos presentados después de la fecha límite sin una justificación debidamente sustentada.
-
-Las entregas tardías únicamente podrán ser consideradas de manera excepcional, previa evaluación y autorización del equipo docente.
-
-En caso de autorizarse una entrega fuera de plazo, se aplicará una penalización de 2 puntos sobre la calificación final por cada día de retraso.
-
-La presentación de una justificación no garantiza la aceptación de la entrega tardía. Cada caso será evaluado individualmente por el equipo docente.
-
-Para aplicar la penalización, se contabilizará cada período de 24 horas de retraso iniciado después del vencimiento del plazo. Cualquier fracción de un nuevo período se considerará un día adicional.
-
-Ejemplo: Para un trabajo que obtiene 18/20 según la rúbrica:
-
-Retraso	Penalización	Nota final
-1 día	−2	16
-2 días	−4	14
-3 días	−6	12
-4 días	−8	10
-La penalización se aplicará sobre la nota obtenida según la rúbrica de 20 puntos, sin que la calificación final pueda ser inferior a 0.
-
-Se recomienda comprobar con anticipación que:
-
-El repositorio y todos los enlaces sean accesibles.
-Los scripts, pruebas y resultados estén correctamente guardados.
-Las evidencias del uso de IA estén completas.
-No se hayan publicado credenciales ni información sensible.
-El comentario de entrega se haya registrado correctamente dentro del plazo.
-🎯 Resultado esperado
-Al finalizar esta tarea, cada estudiante deberá contar con un agente de investigación socioeconómica funcional, capaz de consultar información oficial del BCRP mediante MCP, procesar y analizar microdatos de ENAHO mediante Skills y elaborar informes con resultados verificables.
-
-El proyecto estará completo cuando el agente pueda responder una pregunta real utilizando ambas herramientas, y cuando otra persona pueda reproducir, evaluar y comprobar los resultados obtenidos.
-
-El propósito es desarrollar competencias para construir sistemas de inteligencia artificial que no se limiten a generar respuestas, sino que sean capaces de utilizar herramientas, ejecutar procedimientos reproducibles y producir evidencia confiable para el análisis de datos y la investigación social.
-
-¡Éxitos con sus proyectos! 🚀
 
 > 🔧 `Bash`: actualiza la nota de memoria del proyecto (contenido omitido).
 
