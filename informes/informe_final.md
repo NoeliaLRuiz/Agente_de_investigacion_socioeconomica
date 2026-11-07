@@ -406,3 +406,18 @@ ejemplo, https://estadisticas.bcrp.gob.pe/estadisticas/series/api/RD16735DA/json
 **Entorno:** Python ≥ 3.14 y las dependencias de `pyproject.toml` y `uv.lock`, que se ejecutan con `uv run`.
 
 **Aleatoriedad:** el valor p por permutaciones usa la semilla 2024, así que se repite igual.
+
+## 8. Verificación manual
+
+Verifiqué a mano cinco cifras del informe el 06 de noviembre de 2026, en el navegador y sin usar el MCP ni las skills del proyecto.
+Dos son del BCRP, dos de la ENAHO y una del cruce de ambas fuentes.
+
+| # | Afirmación del informe | Valor del informe | Cómo lo verifiqué | Valor encontrado | ¿Coincide? | Diferencia |
+|---|---|---:|---|---:|---|---|
+| 1 | Inversión de los gobiernos regionales en 2024 (RD16735DA) | 13,717.4 millones | Tabla web del BCRP: [RD16735DA, 2020-2024](https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/RD16735DA/html/2020/2024/) | 13,717 millones | Sí | 0.4 millones, por redondeo: la web muestra millones enteros |
+| 2 | Máximo de la inversión de los gobiernos locales, en 2022 (RD16708DA) | 20,499.8 millones | Tabla web del BCRP: [RD16708DA, 2020-2024](https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/RD16708DA/html/2020/2024/) | 20,500 millones | Sí | 0.2 millones, por redondeo |
+| 3 | Pobreza monetaria nacional 2024 | 27.58 % | Cifra oficial del INEI: [Evolución de la Pobreza Monetaria 2015-2024](https://cdn.www.gob.pe/uploads/document/file/8058556/6763186-peru-evolucion-de-la-pobreza-monetaria-2015-2024.pdf?v=1747173826) | 27.6 % | Sí | 0.02 puntos, por redondeo a un decimal (dentro de la tolerancia de 0.1) |
+| 4 | Pobreza monetaria de Cajamarca 2024 | 45.01 % | Cálculo independiente del curso: `sessions/16-skills-enaho/referencias/pobreza_departamento_2024.csv` | 45.0 % | Sí | 0.01 puntos, por redondeo |
+| 5 | Inversión real por habitante en Moquegua, promedio anual 2020-2024 | 3,291 soles | En Excel, con `salidas/cruce_inversion_pobreza.csv`: `real_total × 1,000,000 ÷ 5 ÷ poblacion_expandida` | 3,291.17 soles | Sí | Ninguna (el informe redondea a enteros) |
+
+Las cinco cifras coinciden. Las diferencias se deben solo al redondeo de las fuentes publicadas.
