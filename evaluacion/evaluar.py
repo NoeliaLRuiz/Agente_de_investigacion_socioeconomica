@@ -7,7 +7,9 @@ Modo A: sin herramientas. Claude Code corre en una carpeta temporal vacía, fuer
         (--strict-mcp-config sin servidores) y sin ninguna herramienta (--tools ""): ni archivos, ni terminal,
         ni web, ni Skills. Responde solo con lo que sabe y no puede leer las respuestas ya calculadas.
 Modo B: con el MCP bcrp de .mcp.json y las Skills de .claude/skills, en la raíz del proyecto. Puede usar Skill,
-        Bash/PowerShell para correr `uv run` (y comandos de lectura), Read, Glob y Grep. No tiene web.
+        Read, Glob y Grep, y la terminal solo para `uv run .claude/skills/...` (más cd y ls). No tiene web. No puede
+        leer evaluacion/ (las respuestas esperadas) ni evidencias_ia/ (los registros de otras preguntas).
+        Corrida 1 (06-11-2026): sin ese bloqueo, Grep llegó a mostrar preguntas.csv; por eso se repitió todo.
 
 Cada pregunta es una llamada independiente a `claude -p`, sin guardar la sesión. Las dos usan el mismo modelo
 y la misma instrucción. Las respuestas esperadas están en preguntas.csv con su fuente: se fijaron antes de correr.
@@ -35,13 +37,15 @@ INSTRUCCION = ("Responde la pregunta. En «valor» pon la cifra que pide, en la 
                "segunda cifra si pide dos. En «respuesta» explica en una o dos oraciones, sin afirmar causas que los "
                "datos no muestran. En «fuente» di de dónde sale cada cifra. Si no puedes saberlo con certeza, pon "
                "null en la cifra: no estimes.\n\nPregunta: ")
-LECTURA = ["cd *", "ls *", "cat *", "head *", "tail *", "grep *", "echo *", "wc *"]
 MODOS = {
     "A": ["--tools", "", "--strict-mcp-config"],
+    # En B la terminal solo puede correr los scripts de las Skills, y Read, Glob y Grep no pueden abrir
+    # evaluacion/ (las respuestas esperadas) ni evidencias_ia/ (los registros de otras preguntas).
     "B": ["--tools", "Skill,Bash,PowerShell,Read,Glob,Grep", "--strict-mcp-config",
           "--mcp-config", str(RAIZ / ".mcp.json"),
-          "--allowedTools", "mcp__bcrp", "Skill", "Read", "Glob", "Grep", "Bash(uv run *)", "PowerShell(uv run *)",
-          *[f"Bash({c})" for c in LECTURA]],
+          "--allowedTools", "mcp__bcrp", "Skill", "Read", "Glob", "Grep", "Bash(uv run .claude/skills/*)",
+          "PowerShell(uv run .claude/skills/*)", "Bash(cd *)", "Bash(ls *)",
+          "--disallowedTools", "Read(./evaluacion/**)", "Read(./evidencias_ia/**)"],
 }
 CAUSAL = re.compile(r"\b(caus\w*|provoc\w*|gracias a|se debe a|debido a (la|su) inversi|reduj\w+ la pobreza|"
                     r"explica la pobreza)\b", re.I)
